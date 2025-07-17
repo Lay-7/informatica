@@ -14,36 +14,53 @@
       text-align: center;
       margin-bottom: 30px;
     }
+    .semester-line {
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
     .semester {
-      margin-bottom: 40px;
+      min-width: 220px;
+      flex-shrink: 0;
     }
     .semester h2 {
       background-color: #007bff;
       color: white;
       padding: 10px;
       border-radius: 8px;
+      text-align: center;
     }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-      margin-top: 15px;
+      gap: 10px;
+      margin-top: 10px;
     }
     .course {
       background-color: #fff;
-      padding: 15px;
+      padding: 12px;
       border-radius: 8px;
-      border: 1px solid #ddd;
-      box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+      border: 1px solid #ccc;
+      box-shadow: 1px 1px 5px rgba(0,0,0,0.05);
       cursor: pointer;
-      transition: transform 0.2s;
+      text-align: center;
+      transition: all 0.2s;
     }
-    .course:hover {
+    .course:hover:not(.disabled) {
+      background-color: #e6f0ff;
       transform: scale(1.03);
-      background: #e6f0ff;
+    }
+    .disabled {
+      background-color: #eee;
+      color: #aaa;
+      cursor: not-allowed;
     }
     #info-box {
-      margin-top: 20px;
+      margin-top: 30px;
       padding: 15px;
       background: #dff0d8;
       border-left: 5px solid #3c763d;
@@ -55,52 +72,84 @@
 <body>
   <h1>Malla Curricular Interactiva - Ingeniería en Informática</h1>
 
-  <div id="malla"></div>
+  <div class="semester-line" id="malla"></div>
 
   <div id="info-box"></div>
 
   <script>
-    const malla = {
-      "1er Semestre": ["Lógica de Programación", "Responsabilidad Social y Ética", "Fundamentos de Administración", "Comunicación Profesional Interdisciplinaria", "Matemáticas Discretas", "Fundamentos de Física"],
-      "2o Semestre": ["Física General Experimental", "Estructura de Datos", "Programación de Bajo Nivel", "Metodología de la Investigación", "Psicología en el Trabajo", "Fundamentos de Ingeniería de Software"],
-      "3er Semestre": ["Aplicación de Sistemas Digitales", "Sistemas Digitales", "Cálculo Diferencial e Integral", "Programación Orientada a Objetos", "Probabilidad", "Construcción de Bases de Datos"],
-      "4o Semestre": ["Ingeniería de Requerimientos", "Arquitectura y Organización de las Computadoras", "Diseño de Interfaces de Usuario", "Algoritmos Computacionales", "Sistemas Embebidos"],
-      "5o Semestre": ["Redes y Conectividad", "Programación Móvil", "Modelos Determinísticos de Investigación de Operaciones", "Fundamentos de Inteligencia Artificial", "Formulación y Evaluación de Proyectos", "Gestión de Proyectos"],
-      "6o Semestre": ["Habilidades Directivas", "Computación en la Nube", "Calidad y Normalización de Software", "Informática Empresarial", "Administración de Tecnologías"],
-      "7o Semestre": ["Ingeniería de Diseño", "Dispositivos Programables", "Adquisición de Datos", "Seguridad Informática", "Teoría de la Computación y Compiladores", "Comunicación de Datos"],
-      "8o Semestre": ["Programación WEB", "Contabilidad Financiera y de Costos", "Métodos Numéricos", "Aplicaciones de la Ciencia Económica", "Álgebra Lineal", "Proyecto de Titulación"]
+    const malla = [
+      { semestre: "1er Semestre", cursos: ["Lógica de Programación"] },
+      { semestre: "2o Semestre", cursos: ["Estructura de Datos"] },
+      { semestre: "3er Semestre", cursos: ["Programación Orientada a Objetos"] },
+      { semestre: "4o Semestre", cursos: ["Arquitectura de las Computadoras"] },
+      { semestre: "5o Semestre", cursos: ["Redes y Conectividad"] },
+      { semestre: "6o Semestre", cursos: ["Computación en la Nube"] },
+      { semestre: "7o Semestre", cursos: ["Seguridad Informática"] },
+      { semestre: "8o Semestre", cursos: ["Proyecto de Titulación"] }
+    ];
+
+    const prerequisitos = {
+      "Estructura de Datos": ["Lógica de Programación"],
+      "Programación Orientada a Objetos": ["Estructura de Datos"],
+      "Redes y Conectividad": ["Arquitectura de las Computadoras"],
+      "Seguridad Informática": ["Redes y Conectividad"],
+      "Proyecto de Titulación": ["Seguridad Informática"]
     };
 
     const descripciones = {
       "Lógica de Programación": "Conceptos básicos de algoritmia y estructuras de control.",
-      "Programación WEB": "Desarrollo de aplicaciones web con tecnologías del lado del cliente y servidor.",
-      "Seguridad Informática": "Fundamentos de protección de datos, redes y sistemas contra amenazas."
+      "Estructura de Datos": "Organización y manipulación eficiente de datos.",
+      "Programación Orientada a Objetos": "Paradigma de programación con clases y objetos.",
+      "Arquitectura de las Computadoras": "Diseño interno de los sistemas computacionales.",
+      "Redes y Conectividad": "Modelos de comunicación, protocolos y topologías.",
+      "Seguridad Informática": "Fundamentos de protección de sistemas.",
+      "Proyecto de Titulación": "Integración de conocimientos en un proyecto final."
     };
 
-    const contenedor = document.getElementById("malla");
-    for (const semestre in malla) {
-      const semDiv = document.createElement("div");
-      semDiv.className = "semester";
-      semDiv.innerHTML = `<h2>${semestre}</h2>`;
+    const completadas = new Set();
 
-      const grid = document.createElement("div");
-      grid.className = "grid";
-      malla[semestre].forEach(curso => {
-        const div = document.createElement("div");
-        div.className = "course";
-        div.innerText = curso;
-        div.onclick = () => mostrarInfo(curso);
-        grid.appendChild(div);
+    function actualizarCursos() {
+      document.getElementById("malla").innerHTML = "";
+      malla.forEach(({ semestre, cursos }) => {
+        const contenedor = document.createElement("div");
+        contenedor.className = "semester";
+        const titulo = document.createElement("h2");
+        titulo.textContent = semestre;
+        contenedor.appendChild(titulo);
+
+        const grid = document.createElement("div");
+        grid.className = "grid";
+
+        cursos.forEach(curso => {
+          const div = document.createElement("div");
+          div.className = "course";
+          div.textContent = curso;
+          const requisitos = prerequisitos[curso] || [];
+          const habilitado = requisitos.every(r => completadas.has(r));
+          if (!habilitado) {
+            div.classList.add("disabled");
+          } else {
+            div.onclick = () => {
+              mostrarInfo(curso);
+              completadas.add(curso);
+              actualizarCursos();
+            };
+          }
+          grid.appendChild(div);
+        });
+
+        contenedor.appendChild(grid);
+        document.getElementById("malla").appendChild(contenedor);
       });
-      semDiv.appendChild(grid);
-      contenedor.appendChild(semDiv);
     }
 
     function mostrarInfo(curso) {
-      const infoBox = document.getElementById("info-box");
-      infoBox.style.display = 'block';
-      infoBox.textContent = descripciones[curso] || 'Próximamente se añadirá una descripción para este curso.';
+      const box = document.getElementById("info-box");
+      box.style.display = "block";
+      box.textContent = descripciones[curso] || "Sin descripción disponible.";
     }
+
+    actualizarCursos();
   </script>
 </body>
 </html>
