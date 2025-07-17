@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Malla Interactiva - Ing. Informática</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f7f9fc;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .semester {
+      margin-bottom: 40px;
+    }
+    .semester h2 {
+      background-color: #007bff;
+      color: white;
+      padding: 10px;
+      border-radius: 8px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .course {
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .course:hover {
+      transform: scale(1.03);
+      background: #e6f0ff;
+    }
+    #info-box {
+      margin-top: 20px;
+      padding: 15px;
+      background: #dff0d8;
+      border-left: 5px solid #3c763d;
+      border-radius: 5px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Malla Curricular Interactiva - Ingeniería en Informática</h1>
+
+  <div id="malla"></div>
+
+  <div id="info-box"></div>
+
+  <script>
+    const malla = {
+      "1er Semestre": ["Lógica de Programación", "Responsabilidad Social y Ética", "Fundamentos de Administración", "Comunicación Profesional Interdisciplinaria", "Matemáticas Discretas", "Fundamentos de Física"],
+      "2o Semestre": ["Física General Experimental", "Estructura de Datos", "Programación de Bajo Nivel", "Metodología de la Investigación", "Psicología en el Trabajo", "Fundamentos de Ingeniería de Software"],
+      "3er Semestre": ["Aplicación de Sistemas Digitales", "Sistemas Digitales", "Cálculo Diferencial e Integral", "Programación Orientada a Objetos", "Probabilidad", "Construcción de Bases de Datos"],
+      "4o Semestre": ["Ingeniería de Requerimientos", "Arquitectura y Organización de las Computadoras", "Diseño de Interfaces de Usuario", "Algoritmos Computacionales", "Sistemas Embebidos"],
+      "5o Semestre": ["Redes y Conectividad", "Programación Móvil", "Modelos Determinísticos de Investigación de Operaciones", "Fundamentos de Inteligencia Artificial", "Formulación y Evaluación de Proyectos", "Gestión de Proyectos"],
+      "6o Semestre": ["Habilidades Directivas", "Computación en la Nube", "Calidad y Normalización de Software", "Informática Empresarial", "Administración de Tecnologías"],
+      "7o Semestre": ["Ingeniería de Diseño", "Dispositivos Programables", "Adquisición de Datos", "Seguridad Informática", "Teoría de la Computación y Compiladores", "Comunicación de Datos"],
+      "8o Semestre": ["Programación WEB", "Contabilidad Financiera y de Costos", "Métodos Numéricos", "Aplicaciones de la Ciencia Económica", "Álgebra Lineal", "Proyecto de Titulación"]
+    };
+
+    const descripciones = {
+      "Lógica de Programación": "Conceptos básicos de algoritmia y estructuras de control.",
+      "Programación WEB": "Desarrollo de aplicaciones web con tecnologías del lado del cliente y servidor.",
+      "Seguridad Informática": "Fundamentos de protección de datos, redes y sistemas contra amenazas."
+    };
+
+    const contenedor = document.getElementById("malla");
+    for (const semestre in malla) {
+      const semDiv = document.createElement("div");
+      semDiv.className = "semester";
+      semDiv.innerHTML = `<h2>${semestre}</h2>`;
+
+      const grid = document.createElement("div");
+      grid.className = "grid";
+      malla[semestre].forEach(curso => {
+        const div = document.createElement("div");
+        div.className = "course";
+        div.innerText = curso;
+        div.onclick = () => mostrarInfo(curso);
+        grid.appendChild(div);
+      });
+      semDiv.appendChild(grid);
+      contenedor.appendChild(semDiv);
+    }
+
+    function mostrarInfo(curso) {
+      const infoBox = document.getElementById("info-box");
+      infoBox.style.display = 'block';
+      infoBox.textContent = descripciones[curso] || 'Próximamente se añadirá una descripción para este curso.';
+    }
+  </script>
+</body>
+</html>
