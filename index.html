@@ -102,21 +102,24 @@
     ];
 
     const prerequisitos = {
+      "Sistemas Digitales": ["Matemáticas Discretas"],
+      "Aplicación de Sistemas Digitales": ["Matemáticas Discretas"],
       "Estructura de Datos": ["Lógica de Programación"],
+      "Probabilidad": ["Cálculo Diferencial e Integral"],
+      "Arquitectura de las Computadoras": ["Sistemas Digitales" && "Aplicación de Sistemas Digitales"],
+      "Ingeniería de Requerimientos": ["Fundamentos de Ingeniería de Software"],
+      "Construcción de Bases de Datos": ["Estructura de Datos"],
+      "Algoritmos Computacionales": ["Estructura de Datos"],
       "Programación Orientada a Objetos": ["Estructura de Datos"],
+      "Estadística": ["Probabilidad"],
+      "Dispositivos Programables": ["Arquitectura de las Computadoras"],
+      "Ingeniería de Diseño": ["Ingeniería de Requerimientos"],
+      "Álgebra Lineal": ["Estadística"],
+      "Métodos Numéricos": ["Estadística"],
+      "Ingeniería de Pruebas": ["Ingeniería de Diseño"],
       "Redes y Conectividad": ["Arquitectura de las Computadoras"],
       "Seguridad Informática": ["Redes y Conectividad"],
       "Proyecto de Titulación": ["Seguridad Informática"]
-    };
-
-    const descripciones = {
-      "Lógica de Programación": "Conceptos básicos de algoritmia y estructuras de control.",
-      "Estructura de Datos": "Organización y manipulación eficiente de datos.",
-      "Programación Orientada a Objetos": "Paradigma de programación con clases y objetos.",
-      "Arquitectura de las Computadoras": "Diseño interno de los sistemas computacionales.",
-      "Redes y Conectividad": "Modelos de comunicación, protocolos y topologías.",
-      "Seguridad Informática": "Fundamentos de protección de sistemas.",
-      "Proyecto de Titulación": "Integración de conocimientos en un proyecto final."
     };
 
     const completadas = new Set();
@@ -148,7 +151,6 @@
             div.classList.add("disabled");
           } else if (!completadas.has(curso)) {
             div.onclick = () => {
-              mostrarInfo(curso);
               completadas.add(curso);
               actualizarCursos();
             };
@@ -161,13 +163,7 @@
         document.getElementById("malla").appendChild(contenedor);
       });
     }
-
-    function mostrarInfo(curso) {
-      const box = document.getElementById("info-box");
-      box.style.display = "block";
-      box.textContent = descripciones[curso] || "Sin descripción disponible.";
-    }
-
+    
     actualizarCursos();
   </script>
 </body>
