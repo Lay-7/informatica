@@ -7,69 +7,76 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 20px;
-      background: #f7f9fc;
+      margin: 0;
+      padding: 0;
+      background: #fde6f2;
+      color: #3d0066;
     }
     h1 {
       text-align: center;
-      margin-bottom: 30px;
+      margin: 30px;
+      color: #7a0080;
     }
     .semester-line {
       display: flex;
-      flex-wrap: wrap;
+      overflow-x: auto;
       gap: 20px;
       padding: 20px;
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      justify-content: center;
+      background: #fff0fb;
+      border-top: 4px solid #d39acb;
+      border-bottom: 4px solid #d39acb;
+      white-space: nowrap;
     }
     .semester {
-      min-width: 220px;
+      min-width: 240px;
       flex-shrink: 0;
+      background: #fce4ff;
+      border-radius: 10px;
+      padding: 10px;
+      box-shadow: 2px 2px 8px rgba(123, 0, 123, 0.2);
     }
     .semester h2 {
-      background-color: #007bff;
+      background-color: #c273e8;
       color: white;
       padding: 10px;
       border-radius: 8px;
       text-align: center;
+      margin: 0 0 10px 0;
     }
     .grid {
-      display: grid;
-      grid-template-columns: 1fr;
+      display: flex;
+      flex-direction: column;
       gap: 10px;
-      margin-top: 10px;
     }
     .course {
-      background-color: #fff;
-      padding: 12px;
+      background-color: #ffffff;
+      padding: 10px;
       border-radius: 8px;
-      border: 1px solid #ccc;
+      border: 1px solid #c273e8;
       box-shadow: 1px 1px 5px rgba(0,0,0,0.05);
       cursor: pointer;
       text-align: center;
       transition: all 0.2s;
     }
     .course:hover:not(.disabled):not(.completed) {
-      background-color: #e6f0ff;
+      background-color: #ffe0f4;
       transform: scale(1.03);
     }
     .disabled {
-      background-color: #eee;
-      color: #aaa;
+      background-color: #f0e0f0;
+      color: #888;
       cursor: not-allowed;
     }
     .completed {
       text-decoration: line-through;
-      background-color: #d0ffd0;
+      background-color: #d5ffd5;
+      color: #4e004e;
     }
     #info-box {
-      margin-top: 30px;
+      margin: 20px;
       padding: 15px;
-      background: #dff0d8;
-      border-left: 5px solid #3c763d;
+      background: #fff0fb;
+      border-left: 5px solid #7a0080;
       border-radius: 5px;
       display: none;
     }
