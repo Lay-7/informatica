@@ -38,6 +38,7 @@
     }
     .grid {
       display: grid;
+      grid-template-columns: 1fr;
       gap: 10px;
       margin-top: 10px;
     }
@@ -83,14 +84,14 @@
 
   <script>
     const malla = [
-      { semestre: "1er Semestre", cursos: ["Lógica de Programación"] },
-      { semestre: "2o Semestre", cursos: ["Estructura de Datos"] },
-      { semestre: "3er Semestre", cursos: ["Programación Orientada a Objetos"] },
-      { semestre: "4o Semestre", cursos: ["Arquitectura de las Computadoras"] },
-      { semestre: "5o Semestre", cursos: ["Redes y Conectividad"] },
-      { semestre: "6o Semestre", cursos: ["Computación en la Nube"] },
-      { semestre: "7o Semestre", cursos: ["Seguridad Informática"] },
-      { semestre: "8o Semestre", cursos: ["Proyecto de Titulación"] }
+      { semestre: "1er Semestre", cursos: ["Lógica de Programación", "Responsabilidad Social y Ética", "Fundamentos de Administración", "Comunicación Profesional Interdisciplinaria", "Matemáticas Discretas", "Fundamentos de Física"] },
+      { semestre: "2o Semestre", cursos: ["Física General Experimental", "Estructura de Datos", "Programación de Bajo Nivel", "Metodología de la Investigación", "Psicología en el Trabajo", "Fundamentos de Ingeniería de Software"] },
+      { semestre: "3er Semestre", cursos: ["Aplicación de Sistemas Digitales", "Sistemas Digitales", "Cálculo Diferencial e Integral", "Programación Orientada a Objetos", "Probabilidad", "Construcción de Bases de Datos"] },
+      { semestre: "4o Semestre", cursos: ["Ingeniería de Requerimientos", "Arquitectura de las Computadoras", "Diseño de Interfaces de Usuario", "Algoritmos Computacionales", "Sistemas Embebidos"] },
+      { semestre: "5o Semestre", cursos: ["Redes y Conectividad", "Programación Móvil", "Modelos Determinísticos de Investigación de Operaciones", "Fundamentos de Inteligencia Artificial", "Formulación y Evaluación de Proyectos", "Gestión de Proyectos"] },
+      { semestre: "6o Semestre", cursos: ["Habilidades Directivas", "Computación en la Nube", "Calidad y Normalización de Software", "Informática Empresarial", "Administración de Tecnologías"] },
+      { semestre: "7o Semestre", cursos: ["Ingeniería de Diseño", "Dispositivos Programables", "Adquisición de Datos", "Seguridad Informática", "Teoría de la Computación y Compiladores", "Comunicación de Datos"] },
+      { semestre: "8o Semestre", cursos: ["Programación WEB", "Contabilidad Financiera y de Costos", "Métodos Numéricos", "Aplicaciones de la Ciencia Económica", "Álgebra Lineal", "Proyecto de Titulación"] }
     ];
 
     const prerequisitos = {
