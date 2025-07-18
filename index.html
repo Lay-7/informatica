@@ -93,12 +93,12 @@
     const malla = [
       { semestre: "1er Semestre", cursos: ["Física General Experimental", "Fundamentos de Física", "Matemáticas Discretas", "Comunicación Profesional Interdisciplinaria", "Responsabilidad Social y Ética", "Lógica de Programación", "Fundamentos de Administración"] },
       { semestre: "2o Semestre", cursos: ["Cálculo Diferencial e Integral", "Sistemas Digitales", "Aplicación de Sistemas Digitales",  "Fundamentos de Ingeniería de Software", "Estructura de Datos", "Programación de Bajo Nivel", "Psicología en el Trabajo", "Metodología de la Investigación"] },
-      { semestre: "3er Semestre", cursos: ["Probabilidad", "Arquitectura de las Computadoras", "Diseño de Interfaces de Usuario", "Ingenieria de Requerimientos", "Construcción de Bases de Datos", "Algoritmos Computacionales", "Programación Orientada a Objetos"] },
+      { semestre: "3er Semestre", cursos: ["Probabilidad", "Arquitectura de las Computadoras", "Diseño de Interfaces de Usuario", "Ingeniería de Requerimientos", "Construcción de Bases de Datos", "Algoritmos Computacionales", "Programación Orientada a Objetos"] },
       { semestre: "4o Semestre", cursos: ["Estadística", "Dispositivos Programables", "Adquisición de Datos", "Ingeniería de Diseño", "Administración de Bases de Datos", "Seguridad Informática", "Sistemas Operativos"] },
       { semestre: "5o Semestre", cursos: ["Álgebra Lineal", "Métodos Numéricos", "Aplicaciones de la Ciencia Económica", "Contabilidad Financiera y de Costos", "Programación WEB", "Comunicación de Datos", "Teoría de la Computación y Compiladores", "Optativa I"] },
       { semestre: "6o Semestre", cursos: ["Modelos Determinísticos de Investigación de Operaciones", "Ingeniería de Pruebas", "Ingeniería Económica", "Presupuesto y Finanzas", "Programación Móvil", "Redes y Conectividad", "Fundamentos de Inteligencia Artificial", "Optativa II"] },
       { semestre: "7o Semestre", cursos: ["Redes y Modelos de Simulación", "Administración Estratégica", "Formulación y Evaluación de Proyectos", "Legislación Informática", "Internet de las Cosas", "Seguridad en Redes", "Ingeniería del Conocimiento", "Optativa III"] },
-      { semestre: "8o Semestre", cursos: ["Calidad y Normalización de Software", "Habilidades Directivas", "Gestión de Proyectos", "Informática Empresarial", "Administración de Tecnologías", "Computacipon en la Nube", "Fundamentos de Analítica de Datos", "Proyecto de Titulación"] }
+      { semestre: "8o Semestre", cursos: ["Calidad y Normalización de Software", "Habilidades Directivas", "Gestión de Proyectos", "Informática Empresarial", "Administración de Tecnologías", "Computación en la Nube", "Fundamentos de Analítica de Datos", "Proyecto de Titulación"] }
     ];
 
     const prerequisitos = {
@@ -116,12 +116,25 @@
       "Ingeniería de Diseño": ["Ingeniería de Requerimientos"],
       "Administración de Bases de Datos": ["Construcción de Bases de Datos"],
       "Álgebra Lineal": ["Estadística"],
-      "Programación WEB": ["Administración de Bases de Datos"],
       "Métodos Numéricos": ["Estadística"],
+      "Programación WEB": ["Administración de Bases de Datos"],
+      "Modelos Determinísticos de Investigación de Operaciones": ["Álgebra Lineal"],
       "Ingeniería de Pruebas": ["Ingeniería de Diseño"],
-      "Redes y Conectividad": ["Arquitectura de las Computadoras"],
-      "Seguridad Informática": ["Redes y Conectividad"],
-      "Proyecto de Titulación": ["Seguridad Informática"]
+      "Ingeniería Económica": ["Contabilidad Financiera y de Costos"],
+      "Presupuesto y Finanzas": ["Contabilidad Financiera y de Costos"],
+      "Programación Móvil": ["Programación WEB"],
+      "Redes y Conectividad": ["Comunicación de Datos"],
+      "Fundamentos de Inteligencia Artificial": ["Teoría de la Computación y Compiladores"],
+      "Redes y Modelos de Simulación": ["Modelos Determinísticos de Investigación de Operaciones"],
+      "Formulación y Evaluación de Proyectos": ["Ingeniería Económica", "Presupuesto y Finanzas"],
+      "Internet de las Cosas": ["Redes y Conectividad"],
+      "Seguridad en Redes": ["Redes y Conectividad"],
+      "Ingeniería del Conocimiento": ["Fundamentos de Inteligencia Artificial"],
+      "Habilidades Directivas": ["Administración Estratégica"],
+      "Gestión de Proyectos": ["Formulación y Evaluación de Proyectos"],
+      "Informática Empresarial": ["Legislación Informática"],
+      "Computación en la Nube": ["Seguridad en Redes"],
+      "Fundamentos de Analítica de Datos": ["Ingeniería del Conocimiento"],
     };
 
     const completadas = new Set();
