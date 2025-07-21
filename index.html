@@ -167,6 +167,7 @@
           } else if (!completadas.has(curso)) {
             div.onclick = () => {
               completadas.add(curso);
+              guardarProgreso();
               actualizarCursos();
             };
           }
@@ -177,6 +178,10 @@
         contenedor.appendChild(grid);
         document.getElementById("malla").appendChild(contenedor);
       });
+    }
+
+    function guardarProgreso() {
+      localStorage.setItem("materiasCompletadas", JSON.stringify(Array.from(completadas)));
     }
     
     actualizarCursos();
